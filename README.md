@@ -1,8 +1,7 @@
 # Dry Bean Classification: ML Assignment 2
 
-**Course:** Machine Learning, M.Tech (AIML), BITS Pilani WILP
-**Name / ID:** Kshitiz Sahai / 2026AJ05035
-
+**Course:** Machine Learning, M.Tech (AIML), BITS Pilani WILP  
+**Name / ID:** Kshitiz Sahai / 2026AJ05035  
 ---
 
 ## a. Problem Statement
@@ -41,7 +40,7 @@ interactive Streamlit app.
 
 ## c. GitHub Repository Link
 
-[https://github.com/kshitizsahai/ML-Dry-Bean-Classifier.git]
+https://github.com/kshitizsahai/ML-Dry-Bean-Classifier.git
 
 **Live Streamlit app:** <https://your-app-name.streamlit.app>
 
@@ -67,13 +66,13 @@ interactive Streamlit app.
 
 ### Comparison table (evaluated on the held-out test set)
 
-| ML Model Name | Accuracy | AUC | Precision | Recall | F1 | MCC |
-|---|---|---|---|---|---|---|
-| Logistic Regression | | | | | | |
-| Decision Tree | | | | | | |
-| KNN | | | | | | |
-| Naive Bayes | | | | | | |
-| Support Vector Machine | | | | | | |
+| ML Model Name       |   Accuracy |    AUC |   Precision |   Recall |     F1 |    MCC |
+|:--------------------|-----------:|-------:|------------:|---------:|-------:|-------:|
+| Logistic Regression |     0.9195 | 0.9935 |      0.9201 |   0.9195 | 0.9197 | 0.9028 |
+| Decision Tree       |     0.9022 | 0.9634 |      0.9025 |   0.9022 | 0.9023 | 0.8817 |
+| KNN                 |     0.9118 | 0.9832 |      0.9123 |   0.9118 | 0.9119 | 0.8933 |
+| Naive Bayes         |     0.763  | 0.9644 |      0.7647 |   0.763  | 0.7607 | 0.7143 |
+| SVM                 |     0.921  | 0.9933 |      0.9214 |   0.921  | 0.9211 | 0.9045 |
 
 *Precision, Recall and F1 are weighted averages. AUC is one-vs-rest, weighted.*
 
