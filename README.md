@@ -60,9 +60,9 @@ for precision, recall and F1.
 
 ---
 
-## c. GitHub Repository Link
+## c. GitHub Repository
 
-https://github.com/kshitizsahai/ML-Dry-Bean-Classifier.git
+**Repository Link:** https://github.com/kshitizsahai/ML-Dry-Bean-Classifier.git
 
 **Live Streamlit app:** https://ml-dry-bean-classifier-v1.streamlit.app/
 
