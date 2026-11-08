@@ -49,7 +49,7 @@ needed for distance-based and margin-based models.
 | CALI | 1,630 | 1,630 | 12.04% |
 | BARBUNYA | 1,322 | 1,322 | 9.76% |
 | BOMBAY | 522 | 522 | 3.85% |
-| **Total** | **13,611** | **13,543** | **100%** |
+| **Total** | **13,611** | **13,543** | **100%** |  
 
 The data is moderately imbalanced: the largest class (DERMASON) has about 6.8
 times as many rows as the smallest (BOMBAY). Stratified splitting keeps these
