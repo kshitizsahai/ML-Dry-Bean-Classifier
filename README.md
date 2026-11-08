@@ -21,21 +21,40 @@ interactive Streamlit app.
 | Citation | Dry Bean [Dataset]. (2020). UCI Machine Learning Repository. https://doi.org/10.24432/C50S4B |
 | License | CC BY 4.0 |
 | Task | Multi-class classification (7 classes) |
-| Instances | <13,611, or your count after removing duplicates> |
-| Features | 16, all numeric (area, perimeter, axis lengths, aspect ratio, eccentricity, convex area, equivalent diameter, extent, solidity, roundness, compactness, ShapeFactor1-4) |
-| Target | `Class` (<list your 7 class names>) |
-| Missing values | <none / number> |
-| Train/test split | 80/20, stratified, random_state=42 |
-| Preprocessing | <e.g. duplicates removed, StandardScaler inside the pipeline for LR, KNN, SVM> |
+| Instances | 13,611 originally; 13,543 after removing 68 duplicate rows |
+| Features | 16, all numeric (2 integer, 14 continuous) |
+| Target | `Class` (BARBUNYA, BOMBAY, CALI, DERMASON, HOROZ, SEKER, SIRA) |
+| Missing values | None |
+| Duplicates | 68 exact duplicate rows (all in HOROZ), removed before splitting |
+| Train/test split | 80/20, stratified, random_state=42 (about 10,834 train / 2,709 test rows) |
+| Preprocessing | Duplicates removed; StandardScaler applied inside the pipeline for Logistic Regression, KNN and SVM; Decision Tree and Naive Bayes use raw features |
 
-**Class distribution:**
+**Features:** Area, Perimeter, MajorAxisLength, MinorAxisLength, AspectRation,
+Eccentricity, ConvexArea, EquivDiameter, Extent, Solidity, roundness,
+Compactness, ShapeFactor1, ShapeFactor2, ShapeFactor3, ShapeFactor4.
 
-| Class | Count |
-|---|---|
-| <class 1> | <n> |
-| <class 2> | <n> |
-| ... | ... |
+The features are shape and size measurements taken from images of individual
+bean grains. Their scales differ greatly (Area ranges from about 20,420 to
+254,616, while Solidity stays between about 0.92 and 0.995), so scaling is
+needed for distance-based and margin-based models.
 
+**Class distribution (after removing duplicates):**
+
+| Class | Original count | Count used | Share |
+|---|---|---|---|
+| DERMASON | 3,546 | 3,546 | 26.18% |
+| SIRA | 2,636 | 2,636 | 19.46% |
+| SEKER | 2,027 | 2,027 | 14.97% |
+| HOROZ | 1,928 | 1,860 | 13.73% |
+| CALI | 1,630 | 1,630 | 12.04% |
+| BARBUNYA | 1,322 | 1,322 | 9.76% |
+| BOMBAY | 522 | 522 | 3.85% |
+| **Total** | **13,611** | **13,543** | **100%** |
+
+The data is moderately imbalanced: the largest class (DERMASON) has about 6.8
+times as many rows as the smallest (BOMBAY). Stratified splitting keeps these
+proportions the same in the train and test sets, and weighted averaging is used
+for precision, recall and F1.
 ---
 
 ## c. GitHub Repository Link
