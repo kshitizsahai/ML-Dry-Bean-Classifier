@@ -55,6 +55,7 @@ The data is moderately imbalanced: the largest class (DERMASON) has about 6.8
 times as many rows as the smallest (BOMBAY). Stratified splitting keeps these
 proportions the same in the train and test sets, and weighted averaging is used
 for precision, recall and F1.
+
 ---
 
 ## c. GitHub Repository Link
