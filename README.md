@@ -84,28 +84,36 @@ https://github.com/kshitizsahai/ML-Dry-Bean-Classifier.git
 
 ## d. Models Used
 
-### Comparison table (evaluated on the held-out test set)
+### Comparison table (held-out test set, 2,709 samples)
 
-| ML Model Name       |   Accuracy |    AUC |   Precision |   Recall |     F1 |    MCC |
-|:--------------------|-----------:|-------:|------------:|---------:|-------:|-------:|
-| Logistic Regression |     0.9195 | 0.9935 |      0.9201 |   0.9195 | 0.9197 | 0.9028 |
-| Decision Tree       |     0.9022 | 0.9634 |      0.9025 |   0.9022 | 0.9023 | 0.8817 |
-| KNN                 |     0.9118 | 0.9832 |      0.9123 |   0.9118 | 0.9119 | 0.8933 |
-| Naive Bayes         |     0.763  | 0.9644 |      0.7647 |   0.763  | 0.7607 | 0.7143 |
-| SVM                 |     0.921  | 0.9933 |      0.9214 |   0.921  | 0.9211 | 0.9045 |
+| ML Model Name | Accuracy | AUC | Precision | Recall | F1 | MCC |
+|---|---|---|---|---|---|---|
+| Logistic Regression | 0.9195 | 0.9935 | 0.9201 | 0.9195 | 0.9197 | 0.9028 |
+| Decision Tree | 0.9022 | 0.9634 | 0.9025 | 0.9022 | 0.9023 | 0.8817 |
+| KNN | 0.9118 | 0.9832 | 0.9123 | 0.9118 | 0.9119 | 0.8933 |
+| Naive Bayes | 0.7630 | 0.9644 | 0.7647 | 0.7630 | 0.7607 | 0.7143 |
+| Support Vector Machine | 0.9210 | 0.9933 | 0.9214 | 0.9210 | 0.9211 | 0.9045 |
 
-*Precision, Recall and F1 are weighted averages. AUC is one-vs-rest, weighted.*
+*Precision, Recall and F1 are support-weighted averages, and AUC is one-vs-rest
+weighted. Weighted recall is mathematically identical to accuracy in
+multi-class classification, which is why those two columns match.*
 
 ### Observations on model performance
 
 | ML Model Name | Observation about model performance |
 |---|---|
-| Logistic Regression | <your analysis> |
-| Decision Tree | <your analysis> |
-| KNN | <your analysis> |
-| Naive Bayes | <your analysis> |
-| Support Vector Machine | <your analysis> |
-| **Overall winner for your dataset** | <model name, plus 2-3 sentences of justification> |
+| Logistic Regression | Reached 91.95% accuracy and the highest AUC (0.9935), meaning its class probabilities rank samples very well. Reaching this level with a linear boundary suggests that, after scaling, most bean varieties are close to linearly separable in this feature space. Its main errors were DERMASON samples predicted as SIRA (53) and SIRA predicted as DERMASON (41). It was also fast to train and easy to interpret. |
+| Decision Tree | Scored 90.22% accuracy, the lowest of the four stronger models, and its AUC (0.9634) was well below the other non-Naive-Bayes models. Tree leaves give coarse probability estimates, which lowers AUC even when the predicted labels are mostly right. It made the most DERMASON/SIRA mistakes (61 and 57) and had the weakest SIRA recall (about 84%). Axis-aligned splits struggle where classes overlap along a diagonal combination of correlated features. |
+| KNN | Scored 91.18% accuracy with AUC 0.9832, between the linear models and the tree. Feature scaling was essential here, because Area (tens of thousands) would otherwise dominate distances. It still confused DERMASON and SIRA (53 and 55 errors), which implies those two classes sit close together in feature space. It is slower at prediction time because it stores and searches the full training set. |
+| Naive Bayes | Clearly the weakest, with 76.30% accuracy and MCC 0.714, about 15 points of accuracy below the best model. Many features are strongly correlated (Area, Perimeter, ConvexArea, EquivDiameter and the axis lengths), which violates the independence assumption, and the Gaussian assumption is a poor fit for skewed bean measurements. BARBUNYA suffered most: only about 46% were recalled, with 108 predicted as CALI. Its AUC (0.9644) stayed high despite low accuracy, so it ranks samples reasonably but its hard class decisions are poor. |
+| Support Vector Machine | Best on five of six metrics: accuracy 92.10%, F1 0.9211 and MCC 0.9045. The RBF kernel can bend the decision boundary where classes overlap, giving the best recall for CALI (about 95%), SEKER (about 95%) and DERMASON (about 91%). Its remaining errors are still the DERMASON/SIRA pair (49 and 47), the smallest counts among the models except Naive Bayes. The costs are a longer training time and the need for scaling. |
+| **Overall winner for your dataset** | **Support Vector Machine.** It has the highest accuracy, F1 and MCC, and its AUC (0.9933) is essentially tied with Logistic Regression (0.9935). Its lead over Logistic Regression is only 4 correctly classified test samples (2,495 vs 2,491), so the two are practically equivalent on this split. SVM is chosen as the winner for the best overall balance across all metrics, but Logistic Regression is a very close and simpler alternative. |
+
+### Additional observations
+- **BOMBAY** was classified perfectly (104 of 104) by all five models. Bombay beans are much larger than the other varieties, so size features separate them easily.
+- **DERMASON vs SIRA** is the dominant error pair for every model, which points to genuine overlap between these two varieties rather than a weakness of one algorithm.
+- **BARBUNYA vs CALI** is the second most common confusion (for example 18 and 7 for SVM, but 108 and 42 for Naive Bayes).
+- Because the classes are imbalanced (BOMBAY is under 4% of the data), MCC is a useful extra check. It tracks the same ranking as accuracy and F1 here, which confirms the ordering is not an artifact of the majority classes.
 
 ---
 
