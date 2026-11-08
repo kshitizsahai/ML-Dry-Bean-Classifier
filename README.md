@@ -42,7 +42,7 @@ interactive Streamlit app.
 
 https://github.com/kshitizsahai/ML-Dry-Bean-Classifier.git
 
-**Live Streamlit app:** <https://your-app-name.streamlit.app>
+**Live Streamlit app:** https://ml-dry-bean-classifier-v1.streamlit.app/
 
 **Repository structure:**
 ```
