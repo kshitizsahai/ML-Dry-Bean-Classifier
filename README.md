@@ -1,8 +1,9 @@
 # ML Assignment 2: Dry Bean Classification
 
 **Course:** Machine Learning, M.Tech (AIML), BITS Pilani WILP  
-**Name:** Kshitiz Sahai
+**Name:** Kshitiz Sahai  
 **BITS ID:** 2026AJ05035  
+**Date:** 08-11-2026  
 ---
 
 ## a. Problem Statement
