@@ -99,6 +99,28 @@ https://github.com/kshitizsahai/ML-Dry-Bean-Classifier.git
 *Precision, Recall and F1 are support-weighted averages, and AUC is one-vs-rest
 weighted. Weighted recall is mathematically identical to accuracy in
 multi-class classification, which is why those two columns match.*
+### Confusion matrices
+
+Each matrix below shows the model's predictions on the 2,709-sample test set.
+Rows are the true bean variety and columns are the predicted variety, so the
+diagonal counts correct predictions and off-diagonal cells show which varieties
+the model confuses.
+
+All five models classify BOMBAY perfectly, and the main
+errors are between DERMASON and SIRA. Naive Bayes shows the most spread outside
+the diagonal, especially for BARBUNYA.
+
+| Logistic Regression | Decision Tree |
+|---|---|
+| ![Logistic Regression](plots/cm_logistic_regression.png) | ![Decision Tree](plots/cm_decision_tree.png) |
+
+| KNN | Naive Bayes |
+|---|---|
+| ![KNN](plots/cm_knn.png) | ![Naive Bayes](plots/cm_naive_bayes.png) |
+
+| Support Vector Machine |
+|---|
+| ![SVM](plots/cm_svm.png) |
 
 ### Observations on model performance
 
